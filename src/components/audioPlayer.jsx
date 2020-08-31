@@ -47,7 +47,15 @@ const AudioPlayer = () => {
       console.log('seconds:', seconds);
       seconds += 0.5;
       range.current.value = seconds * 1000;
+      if (seconds > durationSeconds) onDurationOver();
     }, 500);
+  };
+
+  const onDurationOver = () => {
+    source.stop();
+    clearInterval(timer);
+    seconds = 0;
+    range.current.value = 0;
   };
 
   const handlePlayButton = () => {
